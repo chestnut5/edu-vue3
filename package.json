@@ -1,0 +1,64 @@
+{
+  "name": "edu-vue3",
+  "version": "1.0.0",
+  "description": "<!--  * @Author: zhangchen zhang1716680960@163.com  * @Date: 2023-03-09 10:42:29  * @LastEditors: zhangchen zhang1716680960@163.com  * @LastEditTime: 2023-03-09 11:21:21  * @FilePath: /源码笔记/Users/mac/Downloads/vue2源码/edu-vue3/README.md  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE -->",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check build-only",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit",
+    "test": "vite --mode test",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chestnut5/edu-vue3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chestnut5/edu-vue3/issues"
+  },
+  "homepage": "https://github.com/chestnut5/edu-vue3#readme",
+  "dependencies": {
+    "@element-plus/icons": "^0.0.11",
+    "@element-plus/icons-vue": "^2.0.10",
+    "axios": "^1.3.3",
+    "dayjs": "^1.11.7",
+    "element-plus": "^2.2.30",
+    "moment": "^2.29.4",
+    "node-sass": "^8.0.0",
+    "pinia": "^2.0.28",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@iconify-json/ep": "^1.1.9",
+    "@iconify-json/fa": "^1.1.4",
+    "@rushstack/eslint-patch": "^1.1.4",
+    "@types/mockjs": "^1.0.7",
+    "@types/node": "^18.15.0",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^11.0.0",
+    "@vue/tsconfig": "^0.1.3",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.22.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "less": "^4.1.3",
+    "mockjs": "^1.1.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1",
+    "sass": "^1.58.1",
+    "typescript": "~4.7.4",
+    "unplugin-auto-import": "^0.14.2",
+    "unplugin-icons": "^0.15.3",
+    "unplugin-vue-components": "^0.23.0",
+    "vite": "^4.0.0",
+    "vite-plugin-mock": "^2.9.6",
+    "vue-tsc": "^1.0.12"
+  }
+}
