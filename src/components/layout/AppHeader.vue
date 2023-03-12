@@ -11,7 +11,7 @@ import { useTokenStore } from "@/stores/myToken";
 import { isCollapse } from "./isCollapse";
 import { useRouter } from "vue-router";
 import { getInfo, logout } from "@/api/users";
-import { ElMessageBox, ElMessage } from "element-plus";
+
 const router = useRouter();
 //先给空值 然后再调接口去获取数据 （思想)
 const userInfo = ref({ portrait: "", userName: "" });

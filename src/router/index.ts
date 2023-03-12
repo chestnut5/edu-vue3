@@ -41,6 +41,13 @@ const router = createRouter({
           //路由懒加载
           component: () => import("@/views/menu/CreateOrEdit.vue"),
         },
+        // 编辑
+        {
+          path: "/menus/:id/edit",
+          name: "menu-edit",
+
+          component: () => import("@/views/menu/CreateOrEdit.vue"),
+        },
         {
           path: "/:pathMatch(.*)*",
           name: "ErrorPage",

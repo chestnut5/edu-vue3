@@ -2,7 +2,7 @@
  * @Author: zhangchen zhang1716680960@163.com
  * @Date: 2023-03-06 11:10:35
  * @LastEditors: zhangchen zhang1716680960@163.com
- * @LastEditTime: 2023-03-10 10:55:32
+ * @LastEditTime: 2023-03-10 13:05:08
  * @FilePath: /源码笔记/Users/mac/Downloads/edu-vue3/edu-vue/src/api/menus.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -11,7 +11,7 @@ import request from "../utils/request";
 // 使用类型别名 定义类型、
 type Common<T> = {
   code: string;
-  data: T;
+  data: T; //成功或者失败
   mesg: string;
   time: string;
 };
@@ -59,9 +59,28 @@ export type CreateOrEditMenu = Pick<
 
 // 保存或新赠菜单 编辑菜单才有 id
 export const saveOrUpdate = (menuInfo: CreateOrEditMenu) => {
-  return request({
+  return request<Common<boolean>>({
     method: "POST",
     url: "/boss/menu/saveOrUpdate",
     data: menuInfo,
+  });
+};
+
+// 删除菜单的接口
+export const deleteMenu = (id: string) => {
+  return request<Common<boolean>>({
+    method: "DELETE",
+    url: `/boss/menu/${id}`,
+  });
+};
+
+// 编辑菜单接口数据 query ?..
+export const getEditMenuInfo = (id: string) => {
+  return request({
+    method: "GET",
+    url: "/boss/menu/getEditMenuInfo",
+    params: {
+      id,
+    },
   });
 };

@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import { ElMessage } from "element-plus";
 import { useRouter } from "vue-router";
 import { useMenus } from "@/composables/useMenus";
 const router = useRouter(); //  路由跳转
 
-const { allMenus, getAllMenus } = useMenus();
+const { allMenus, getAllMenus, handleDelete } = useMenus();
 getAllMenus();
+
+// 删除 菜单
 </script>
 <template>
   <h1>菜单列表</h1>
@@ -28,9 +29,21 @@ getAllMenus();
         <el-table-column align="center" prop="level" label="菜单层级" />
         <el-table-column align="center" prop="icon" label="菜单图标" />
         <el-table-column align="center" prop="orderNum" label="排序" />
-        <el-table-column align="center" label="操作">
-          <el-button type="primary" size="default">编辑</el-button>
-          <el-button type="danger" size="default">删除</el-button>
+        <el-table-column align="center" label="操作" v-slot="scope">
+          <el-button
+            type="primary"
+            size="default"
+            @click="
+              router.push({ name: 'menu-edit', params: { id: scope.row.id } })
+            "
+            >编辑</el-button
+          >
+          <el-button
+            type="danger"
+            size="default"
+            @click="handleDelete(scope.row.id)"
+            >删除</el-button
+          >
         </el-table-column>
       </el-table>
     </el-card>
