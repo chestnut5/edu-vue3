@@ -73,10 +73,17 @@ export const deleteMenu = (id: string) => {
     url: `/boss/menu/${id}`,
   });
 };
+//内层还有可能会出现空的现象
+type SubMenuItem = MenuItem & { subMenuList: SubMenuItem[] | null };
 
-// 编辑菜单接口数据 query ?..
+type EditMenuInfo = Common<{
+  menuInfo: string;
+  parentMenuList: SubMenuItem;
+}>;
+
+// 编辑菜单接口数据 query ?.. 获取指定id的菜单信息
 export const getEditMenuInfo = (id: string) => {
-  return request({
+  return request<EditMenuInfo>({
     method: "GET",
     url: "/boss/menu/getEditMenuInfo",
     params: {

@@ -4,19 +4,23 @@
  * @LastEditors: zhangchen zhang1716680960@163.com
  * @LastEditTime: 2023-03-10 12:56:00
  * @FilePath: /源码笔记/Users/mac/Downloads/edu-vue3/src/views/menu/CreateOrEdit.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Description:编辑新增菜单页面
 -->
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
 import { useMenus } from "@/composables/useMenus";
 import { useRoute } from "vue-router";
-const { getAllMenus, topMenus, form, onSubmit } = useMenus();
+const { getAllMenus, topMenus, form, onSubmit, getMenuInfoById, msgText } =
+  useMenus();
 getAllMenus();
 const route = useRoute();
 console.log(route.params.id);
+
+// 接收到编辑页面的id
+getMenuInfoById(route.params.id as string);
 </script>
 <template>
-  <h1>创建和编辑</h1>
+  <h1>{{ msgText }}</h1>
   <el-form :model="form" label-width="120px" size="large">
     <el-form-item label="菜单名称">
       <el-input v-model="form.name" />
@@ -51,7 +55,7 @@ console.log(route.params.id);
       <el-input v-model="form.orderNum" />
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="onSubmit">立即创建</el-button>
+      <el-button type="primary" @click="onSubmit">立即{{ msgText }}</el-button>
     </el-form-item>
   </el-form>
 </template>

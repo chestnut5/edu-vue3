@@ -1,4 +1,4 @@
-import { getAll, saveOrUpdate, deleteMenu } from "@/api/menus";
+import { getAll, saveOrUpdate, deleteMenu, getEditMenuInfo } from "@/api/menus";
 import type { MenuItem, CreateOrEditMenu } from "@/api/menus";
 import router from "@/router/index";
 // 导出
@@ -36,13 +36,13 @@ export function useMenus() {
   const onSubmit = async () => {
     const { data } = await saveOrUpdate(form.value);
     if (data.code === "000000") {
-      ElMessage.success("添加菜单成功----");
+      ElMessage.success(`${msgText.value}菜单成功----`);
       router.push({ name: "menus" });
     } else {
-      ElMessage.error("添加菜单失败----");
-      throw new Error("添加菜单失败");
+      ElMessage.error(`${msgText.value}菜单失败----`);
+      throw new Error(`${msgText.value}菜单失败!ß`);
     }
-    console.log(data);
+    return;
   };
 
   // 删除菜单的事件处理函数
@@ -69,15 +69,34 @@ export function useMenus() {
   };
 
   // 编辑 封装 根据id获取菜单信息
-  const getMenuInfoById = (id: string) => {
+  const getMenuInfoById = async (id: string) => {
+    if (!Number(id)) {
+      isCreate.value = true;
+      // 新建
+      return;
+    } else {
+      isCreate.value = false;
+    }
+    const { data } = await getEditMenuInfo(id);
+    console.log(data);
+    if (data.code === "000000") {
+      form.value = data.data.menuInfo;
+    } else {
+      ElMessage.error("获取编辑信息失败");
+      throw new Error("获取编辑信息失败");
+    }
+
     // 通过接口获取数据
   };
-
+  // 1 状态与提示文本
+  const isCreate = ref(true);
+  const msgText = computed(() => (isCreate.value ? "创建" : "更新"));
   return {
     allMenus,
     topMenus,
     getAllMenus,
     form,
+    msgText,
     onSubmit,
     handleDelete,
     getMenuInfoById,

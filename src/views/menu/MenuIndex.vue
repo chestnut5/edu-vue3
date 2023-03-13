@@ -30,6 +30,7 @@ getAllMenus();
         <el-table-column align="center" prop="icon" label="菜单图标" />
         <el-table-column align="center" prop="orderNum" label="排序" />
         <el-table-column align="center" label="操作" v-slot="scope">
+          <!-- 路径传参 -->
           <el-button
             type="primary"
             size="default"
