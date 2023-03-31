@@ -2,6 +2,7 @@
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useMenus } from "@/composables/useMenus";
+import SearchBar from "@/components/searchBar.vue";
 const router = useRouter(); //  路由跳转
 
 const { allMenus, getAllMenus, handleDelete } = useMenus();
@@ -11,15 +12,17 @@ getAllMenus();
 </script>
 <template>
   <h1>菜单列表</h1>
+  <SearchBar>
+    <div class="search-item">
+      <label>姓名</label>
+      <input type="text" class="my-input" />
+    </div>
+  </SearchBar>
   <div>
     <el-card class="box-card">
       <template #header>
         <div class="card-header">
-          <el-button
-            type="primary"
-            @click="router.push({ name: 'menu-create' })"
-            >添加菜单</el-button
-          >
+          <el-button type="primary" @click="router.push({ name: 'menu-create' })">添加菜单</el-button>
         </div>
       </template>
 
@@ -31,20 +34,10 @@ getAllMenus();
         <el-table-column align="center" prop="orderNum" label="排序" />
         <el-table-column align="center" label="操作" v-slot="scope">
           <!-- 路径传参 -->
-          <el-button
-            type="primary"
-            size="default"
-            @click="
-              router.push({ name: 'menu-edit', params: { id: scope.row.id } })
-            "
-            >编辑</el-button
-          >
-          <el-button
-            type="danger"
-            size="default"
-            @click="handleDelete(scope.row.id)"
-            >删除</el-button
-          >
+          <el-button type="primary" size="default" @click="
+            router.push({ name: 'menu-edit', params: { id: scope.row.id } })
+          ">编辑</el-button>
+          <el-button type="danger" size="default" @click="handleDelete(scope.row.id)">删除</el-button>
         </el-table-column>
       </el-table>
     </el-card>

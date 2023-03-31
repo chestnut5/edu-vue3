@@ -12,10 +12,13 @@ import { defineConfig, loadEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
+// 自动引入插件
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { viteMockServe } from "vite-plugin-mock";
+import unoCss from "unocss/vite";
+import { presetIcons, presetAttributify, presetUno } from "unocss";
 // const pathSrc = path.resolve(__dirname, "src");
 
 // const flag = process.env.USEMOKE;
@@ -59,6 +62,20 @@ export default defineConfig({
     viteMockServe({
       mockPath: "./src/mock",
       logger: false,
+    }),
+    unoCss({
+      // unocss 预设
+      presets: [presetIcons(), presetAttributify(), presetUno()],
+      rules: [
+        ["flex", { display: "flex" }],
+        ["red", { color: "red" }],
+        // m-开头的 匹配数字 + 一个或者多个以他为结尾 传入一个函数
+        [/^m-(\d+)$/, ([, d]) => ({ margin: `${Number(d) * 10}px` })],
+      ],
+      //组合样式
+      shortcuts: {
+        cike: ["flex", "red"],
+      },
     }),
   ],
   resolve: {

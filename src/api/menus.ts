@@ -6,15 +6,16 @@
  * @FilePath: /源码笔记/Users/mac/Downloads/edu-vue3/edu-vue/src/api/menus.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import request from "../utils/request";
+import request from "@/utils/request";
 
-// 使用类型别名 定义类型、
+// 使用类型别名 定义类型、 request 返回数据的格式
 type Common<T> = {
   code: string;
   data: T; //成功或者失败
   mesg: string;
   time: string;
 };
+// 菜单每一项的结构说明
 export type MenuItem = {
   createBy: string;
   createTime: string;
@@ -44,7 +45,7 @@ export const getAll = () => {
 // Partial ts 内置高级 将全员改成可选
 // type CreateOrEditMenu = Partial<MenuItem>;
 
-// Pick 从类型定义T的属性中，选取指定一组属性，返回一个新的类型定义。
+// Pick  想要那几个 从类型定义T的属性中，选取指定一组属性，返回一个新的类型定义。
 export type CreateOrEditMenu = Pick<
   MenuItem,
   "parentId" | "name" | "href" | "icon" | "orderNum" | "description" | "shown"

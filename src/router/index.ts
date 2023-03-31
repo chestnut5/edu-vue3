@@ -49,6 +49,19 @@ const router = createRouter({
           component: () => import("@/views/menu/CreateOrEdit.vue"),
         },
         {
+          path: "/resource-category",
+          name: "resource-category",
+          //路由懒加载
+          component: () =>
+            import("@/views/resource-category/ResourceCategoryIndex.vue"),
+        },
+        {
+          path: "/resources",
+          name: "resources",
+          //路由懒加载
+          component: () => import("@/views/resources/ResourcesIndex.vue"),
+        },
+        {
           path: "/:pathMatch(.*)*",
           name: "ErrorPage",
           component: () => import("@/views/ErrorPage.vue"),
