@@ -13,7 +13,9 @@ import App from "./App.vue";
 import router from "./router";
 import "@/styles/index.scss";
 import "uno.css";
+
 const app = createApp(App);
+
 app.use(createPinia());
 app.use(router);
 app.use(ElementPlus, { size: "small", zIndex: 3000 });

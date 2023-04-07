@@ -15,7 +15,7 @@ type Resource = {
   description: string;
   id: number;
   operatorId: number | null;
-  name: number;
+  name: string;
   selected: boolean;
   updatedBy: string;
   updateTime: string;
@@ -50,5 +50,23 @@ export const getResourcePages = (condition: Condition) => {
     method: "POST",
     url: "/boss/resource/getResourcePages",
     data: condition,
+  });
+};
+
+// 保存或更新资源
+
+export const saveOrUpdate = (resource: Partial<Resource>) => {
+  return request<Common<boolean>>({
+    method: "POST",
+    url: "/boss/resource/saveOrUpdate",
+    data: resource,
+  });
+};
+
+// 删除某个资源的
+export const deleteResource = (id: number) => {
+  return request<Common<boolean>>({
+    method: "POST",
+    url: `/boss/resource/${id}`,
   });
 };

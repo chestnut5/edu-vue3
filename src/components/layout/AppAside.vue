@@ -34,7 +34,7 @@ import { isCollapse } from "./isCollapse";
           </el-icon>
           用户管理
         </el-menu-item>
-        <el-menu-item index="course">
+        <el-menu-item index="resources">
           <el-icon>
             <IEpSetting />
           </el-icon>
